@@ -1,0 +1,48 @@
+apiVersion: governance.toolkit/v1
+version: "1.0"
+name: file-governance-demo
+description: Read/write/delete policy for the AGT 4.1.0 demo
+agents:
+  - "did:example:file-demo-agent"
+scope: agent
+default_action: deny
+rules:
+  # Read
+  - name: allow-read
+    description: Reading demo files is allowed
+    stage: pre_tool
+    condition: action.type == 'read_file'
+    action: allow
+    priority: 50
+
+  # Write
+  - name: approve-important-write
+    description: Writing an important file requires human approval
+    stage: pre_tool
+    condition: action.type == 'write_file' and resource.name == 'important.txt'
+    action: require_approval
+    approvers:
+      - demo-user
+    priority: 90
+
+  - name: allow-normal-write
+    description: Writing the normal demo file is allowed
+    stage: pre_tool
+    condition: action.type == 'write_file' and resource.name == 'normal.txt'
+    action: allow
+    priority: 50
+
+  # Delete
+  - name: deny-important-delete
+    description: Important files must never be deleted
+    stage: pre_tool
+    condition: action.type == 'delete_file' and resource.name == 'important.txt'
+    action: deny
+    priority: 100
+
+  - name: allow-normal-delete
+    description: Deleting the normal demo file is allowed
+    stage: pre_tool
+    condition: action.type == 'delete_file' and resource.name == 'normal.txt'
+    action: allow
+    priority: 50
