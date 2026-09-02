@@ -49,3 +49,15 @@ agt --version
 
 インストール済みの全依存バージョンを確認する場合は、仮想環境を有効化して
 `python -m pip list` を実行してください。
+
+## Cost Governance実験
+
+OpenAI／Claude SDK単体と、AGT 4.1.0を実APIへ接続したCost Governance比較は、
+[`demo/cost_governance/README.md`](demo/cost_governance/README.md)を参照してください。
+paid API呼び出しには明示的な`--live`が必要です。
+2026年9月3日の実測結果は
+[`docs/cost_governance_experiment_results_2026-09-03.md`](docs/cost_governance_experiment_results_2026-09-03.md)
+にまとめています。
+発表スライドへ落とし込むための本編15枚＋Appendix構成案は
+[`docs/cost_governance_experiment_slide_outline_2026-09-03.md`](docs/cost_governance_experiment_slide_outline_2026-09-03.md)
+を参照してください。
