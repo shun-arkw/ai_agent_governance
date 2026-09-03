@@ -4,6 +4,10 @@
 [`docs/cost_governance_experiment_results_2026-09-03.md`](../../docs/cost_governance_experiment_results_2026-09-03.md)
 を参照してください。
 
+GPT-5／Claude Opus 5による追加実験は，既存結果を保持したまま
+[`docs/cost_governance_experiment_results_gpt5_opus5_2026-09-03.md`](../../docs/cost_governance_experiment_results_gpt5_opus5_2026-09-03.md)
+および`results/gpt5-opus5/`へ分離して保存しています。各scriptの`--model`でモデルIDを明示できます。
+
 OpenAI Agents SDK、Claude Agent SDK、およびAGT 4.1.0を追加した同じRuntimeを、
 安価なモデルと副作用のないToolで比較します。
 

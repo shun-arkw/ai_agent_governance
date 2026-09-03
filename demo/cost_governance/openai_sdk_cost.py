@@ -16,7 +16,7 @@ HERE = Path(__file__).parent
 
 async def run(args: argparse.Namespace) -> None:
     require_live(args.live)
-    model = os.getenv("OPENAI_DEFAULT_MODEL", "gpt-5-nano")
+    model = args.model or os.getenv("OPENAI_DEFAULT_MODEL", "gpt-5-nano")
     result = await run_openai_task(
         DEFAULT_TASKS[0],
         experiment="openai_sdk_only",
@@ -34,6 +34,7 @@ async def run(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
+    parser.add_argument("--model", help="OpenAI model ID (defaults to OPENAI_DEFAULT_MODEL)")
     parser.add_argument("--max-turns", type=int, default=3)
     parser.add_argument("--max-output-tokens", type=int, default=512)
     parser.add_argument("--pricing", type=Path, default=HERE / "pricing.json")

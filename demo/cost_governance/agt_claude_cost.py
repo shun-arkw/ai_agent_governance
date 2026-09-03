@@ -15,7 +15,7 @@ from common import DEFAULT_TASKS, emit_document, experiment_document, require_li
 
 async def run(args: argparse.Namespace) -> None:
     require_live(args.live)
-    model = os.getenv("CLAUDE_MODEL", "claude-haiku-4-5-20251001")
+    model = args.model or os.getenv("CLAUDE_MODEL", "claude-haiku-4-5-20251001")
     settings = AGTBudgetSettings(
         estimated_task_usd=args.estimated_task_usd,
         per_task_limit_usd=args.per_task_limit_usd,
@@ -70,6 +70,7 @@ async def run(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
+    parser.add_argument("--model", help="Claude model ID (defaults to CLAUDE_MODEL)")
     parser.add_argument("--estimated-task-usd", type=float, default=0.005)
     parser.add_argument("--per-task-limit-usd", type=float, default=0.02)
     parser.add_argument("--per-agent-daily-limit-usd", type=float, default=0.04)

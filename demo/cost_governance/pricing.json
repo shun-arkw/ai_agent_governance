@@ -1,5 +1,12 @@
 {
   "models": {
+    "gpt-5": {
+      "input_usd_per_million": 1.25,
+      "output_usd_per_million": 10.00,
+      "currency": "USD",
+      "verified_date": "2026-09-03",
+      "note": "Pinned standard-processing experiment input. Cached-input discounts are not applied."
+    },
     "gpt-5-nano": {
       "input_usd_per_million": 0.05,
       "output_usd_per_million": 0.40,
